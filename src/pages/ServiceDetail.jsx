@@ -1,26 +1,51 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2 } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, MessageCircle } from 'lucide-react';
 import PageContainer from '@/components/layout/PageContainer';
 import Button from '@/components/ui/Button';
-import ProductCard from '@/components/cards/ProductCard';
-import ProjectCard from '@/components/cards/ProjectCard';
 import EnquiryForm from '@/components/forms/EnquiryForm';
-import { getServiceByIdOrSlug, getRelatedProductsForService, getRelatedProjectsForService } from '@/data/relationships';
+import { fetchServiceById } from '@/lib/firebase/servicesService';
+import { contactData } from '@/data/contact';
 
 /**
- * Ambika Traders — Service Detail Page Shell (Stage 02)
+ * Ambika Traders — Service Detail Page (Dynamic from Firestore)
  */
 export function ServiceDetail() {
   const { slug } = useParams();
-  const service = getServiceByIdOrSlug(slug);
+  const [service, setService] = useState(null);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    async function load() {
+      try {
+        setLoading(true);
+        const data = await fetchServiceById(slug);
+        setService(data);
+      } catch (e) {
+        console.error('Failed to load service detail:', e);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <PageContainer>
+        <div className="content-container py-24 text-center text-xs font-mono text-mono-400 uppercase tracking-wider">
+          Loading service specifications...
+        </div>
+      </PageContainer>
+    );
+  }
 
   if (!service) {
     return (
       <PageContainer>
         <div className="content-container py-20 text-center space-y-4">
           <h1 className="text-heading-xl font-bold">Service Mil Nahi Saki</h1>
-          <p className="text-mono-600">Aap jis service ko dhoondh rahe hain wo available nahi hai ya URL invalid hai.</p>
+          <p className="text-mono-600">Aap jis service ko dhoondh rahe hain wo abhi live nahi hai ya delete ho chuki hai.</p>
           <Button as="link" to="/services" variant="primary" size="md">
             Services List Par Wapas Jayein
           </Button>
@@ -28,9 +53,6 @@ export function ServiceDetail() {
       </PageContainer>
     );
   }
-
-  const relatedProducts = getRelatedProductsForService(service.id);
-  const relatedProjects = getRelatedProjectsForService(service.id);
 
   return (
     <PageContainer>
@@ -55,7 +77,7 @@ export function ServiceDetail() {
             {service.title}
           </h1>
           <p className="mt-4 text-body-lg text-mono-600 leading-relaxed prose-editorial">
-            {service.description}
+            {service.description || service.hinglishHeadline}
           </p>
 
           {/* Scope of Work Breakdown */}
@@ -76,41 +98,19 @@ export function ServiceDetail() {
               </div>
             </div>
           )}
+
+          <div className="mt-8 pt-6 border-t border-mono-200 flex flex-wrap gap-4">
+            <a
+              href={`https://wa.me/${contactData.whatsapp.replace(/\+/g, '')}?text=${encodeURIComponent(`Namaste Ambika Traders, mujhe ${service.title} ke liye site visit aur quotation chahiye.`)}`}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-2 px-6 py-3 bg-mono-950 text-mono-0 font-medium text-xs rounded-xs hover:bg-mono-850 transition-colors"
+            >
+              <MessageCircle className="w-4 h-4" />
+              <span>WhatsApp Par Site Visit Book Karein</span>
+            </a>
+          </div>
         </div>
-
-        {/* Related Products */}
-        {relatedProducts.length > 0 && (
-          <div className="py-16 border-b border-mono-200">
-            <span className="font-mono text-eyebrow text-mono-400 uppercase block mb-2">
-              [SYSTEMS & MATERIALS]
-            </span>
-            <h2 className="text-heading-lg font-bold text-mono-950 mb-8">
-              Compatible Products & Profiles
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {relatedProducts.map((prod) => (
-                <ProductCard key={prod.id} product={prod} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Related Projects */}
-        {relatedProjects.length > 0 && (
-          <div className="py-16 border-b border-mono-200">
-            <span className="font-mono text-eyebrow text-mono-400 uppercase block mb-2">
-              [CASE STUDIES]
-            </span>
-            <h2 className="text-heading-lg font-bold text-mono-950 mb-8">
-              Sites Executed Under This Service
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {relatedProjects.map((proj, idx) => (
-                <ProjectCard key={proj.id} project={proj} index={idx + 1} />
-              ))}
-            </div>
-          </div>
-        )}
 
         {/* Enquiry Form */}
         <div className="py-16 max-w-2xl mx-auto">

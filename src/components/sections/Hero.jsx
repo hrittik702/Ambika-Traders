@@ -66,10 +66,9 @@ export function Hero() {
               <Button
                 as="link"
                 to="/products"
-                variant="inverse"
                 size="lg"
                 rightIcon={<ArrowRight className="w-4 h-4" />}
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto border-2 border-mono-0 bg-mono-950 text-mono-0 hover:bg-mono-0 hover:text-mono-950 font-semibold shadow-floating transition-all duration-200"
               >
                 Products Dekhein
               </Button>
@@ -78,10 +77,9 @@ export function Hero() {
               <Button
                 as="link"
                 to="/services"
-                variant="inverseOutline"
                 size="lg"
                 rightIcon={<ArrowUpRight className="w-4 h-4" />}
-                className="w-full sm:w-auto"
+                className="w-full sm:w-auto border border-mono-700 text-mono-300 hover:text-mono-0 hover:border-mono-300 bg-mono-900/50 backdrop-blur-sm transition-all duration-200"
               >
                 Services Explore Karein
               </Button>

@@ -1,8 +1,9 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowUpRight } from 'lucide-react';
+import { ArrowUpRight, Plus, Check } from 'lucide-react';
 import Badge from '@/components/ui/Badge';
 import Image from '@/components/ui/Image';
+import { useCart } from '@/context/CartContext';
 import { cn } from '@/lib/utils';
 
 /**
@@ -10,7 +11,10 @@ import { cn } from '@/lib/utils';
  * Editorial, image-first architectural card with category badge and direct link.
  */
 export function ProductCard({ product, className }) {
+  const { addItem, items } = useCart();
   if (!product) return null;
+
+  const isInCart = items.some((i) => i.id === product.id);
 
   return (
     <article
@@ -36,6 +40,26 @@ export function ProductCard({ product, className }) {
             {product.categoryName}
           </Badge>
         </div>
+
+        {/* Quick Add To Quote Button */}
+        <button
+          type="button"
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            addItem(product);
+          }}
+          className={cn(
+            'absolute bottom-3 right-3 z-content inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xs text-xs font-mono font-semibold transition-all shadow-subtle',
+            isInCart
+              ? 'bg-mono-950 text-mono-0'
+              : 'bg-mono-0/95 backdrop-blur-sm text-mono-950 border border-mono-300 hover:bg-mono-950 hover:text-mono-0'
+          )}
+          aria-label={`Add ${product.name} to Quote Cart`}
+        >
+          {isInCart ? <Check className="w-3.5 h-3.5" /> : <Plus className="w-3.5 h-3.5" />}
+          <span>{isInCart ? 'In Quote' : '+ Quote'}</span>
+        </button>
       </div>
 
       {/* Content */}

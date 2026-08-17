@@ -1,29 +1,55 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { ArrowLeft, CheckCircle2, ArrowRight } from 'lucide-react';
+import { ArrowLeft, CheckCircle2, ArrowRight, ShoppingBag } from 'lucide-react';
 import PageContainer from '@/components/layout/PageContainer';
 import Button from '@/components/ui/Button';
 import Badge from '@/components/ui/Badge';
 import Image from '@/components/ui/Image';
-import ServiceCard from '@/components/cards/ServiceCard';
-import ProjectCard from '@/components/cards/ProjectCard';
 import EnquiryForm from '@/components/forms/EnquiryForm';
-import { getProductByIdOrSlug, getRelatedServicesForProduct, getRelatedProjectsForProduct } from '@/data/relationships';
+import { fetchProductById } from '@/lib/firebase/productsService';
+import { useCart } from '@/context/CartContext';
 import { scrollToTarget } from '@/lib/lenis';
 
 /**
- * Ambika Traders — Product Detail Page Shell (Stage 02)
+ * Ambika Traders — Product Detail Page (Dynamic from Firestore)
  */
 export function ProductDetail() {
   const { slug } = useParams();
-  const product = getProductByIdOrSlug(slug);
+  const [product, setProduct] = useState(null);
+  const [loading, setLoading] = useState(true);
+  const { addItem } = useCart();
+
+  useEffect(() => {
+    async function load() {
+      try {
+        setLoading(true);
+        const data = await fetchProductById(slug);
+        setProduct(data);
+      } catch (e) {
+        console.error('Failed to load product detail:', e);
+      } finally {
+        setLoading(false);
+      }
+    }
+    load();
+  }, [slug]);
+
+  if (loading) {
+    return (
+      <PageContainer>
+        <div className="content-container py-24 text-center text-xs font-mono text-mono-400 uppercase tracking-wider">
+          Loading product specifications...
+        </div>
+      </PageContainer>
+    );
+  }
 
   if (!product) {
     return (
       <PageContainer>
         <div className="content-container py-20 text-center space-y-4">
           <h1 className="text-heading-xl font-bold">Product Mil Nahi Saka</h1>
-          <p className="text-mono-600">Aap jis product ko dhoondh rahe hain wo available nahi hai ya URL invalid hai.</p>
+          <p className="text-mono-600">Aap jis product ko dhoondh rahe hain wo abhi live nahi hai ya delete ho chuka hai.</p>
           <Button as="link" to="/products" variant="primary" size="md">
             Sabhi Products Par Wapas Jayein
           </Button>
@@ -31,9 +57,6 @@ export function ProductDetail() {
       </PageContainer>
     );
   }
-
-  const relatedServices = getRelatedServicesForProduct(product.id);
-  const relatedProjects = getRelatedProjectsForProduct(product.id);
 
   const handleScrollToEnquiry = (e) => {
     e.preventDefault();
@@ -59,7 +82,7 @@ export function ProductDetail() {
           {/* Product Media Area */}
           <div className="lg:col-span-7">
             <Image
-              src={product.image}
+              src={product.image || '/images/products/slim-sliding-window.jpg'}
               alt={product.name}
               aspect="service"
               fallbackLabel={product.name}
@@ -71,7 +94,7 @@ export function ProductDetail() {
           <div className="lg:col-span-5 flex flex-col justify-between">
             <div>
               <div className="flex items-center gap-2 mb-3">
-                <Badge variant="outline">{product.categoryName}</Badge>
+                <Badge variant="outline">{product.categoryName || 'Architectural System'}</Badge>
                 <span className="font-mono text-xs text-mono-400 font-medium">ID: {product.id}</span>
               </div>
 
@@ -80,7 +103,7 @@ export function ProductDetail() {
               </h1>
 
               <p className="mt-4 text-body text-mono-600 leading-relaxed prose-editorial">
-                {product.description}
+                {product.description || product.hinglishHeadline}
               </p>
 
               {/* Key Features */}
@@ -101,61 +124,39 @@ export function ProductDetail() {
               )}
             </div>
 
-            {/* Price Note & Enquiry Trigger */}
-            <div className="mt-8 pt-6 border-t border-mono-200">
-              <div className="text-xs font-mono text-mono-500 uppercase mb-4">
-                Pricing: Site Measurement & Section Thickness ke hisaab se customized quote di jaati hai.
+            {/* Price Note & Actions */}
+            <div className="mt-8 pt-6 border-t border-mono-200 space-y-3">
+              <div className="text-xs font-mono text-mono-500 uppercase">
+                Estimate: <strong className="text-mono-950">{product.price || 'Custom Quote on Measurement'}</strong>
               </div>
-              <Button
-                variant="primary"
-                size="lg"
-                className="w-full"
-                onClick={handleScrollToEnquiry}
-                rightIcon={<ArrowRight className="w-4 h-4" />}
-              >
-                Is Product Ke Liye Enquiry Karein
-              </Button>
+
+              <div className="flex flex-col sm:flex-row gap-3">
+                <Button
+                  variant="primary"
+                  size="lg"
+                  className="flex-1"
+                  onClick={() => addItem(product)}
+                  leftIcon={<ShoppingBag className="w-4 h-4" />}
+                >
+                  Quotation Cart Mein Add Karein
+                </Button>
+
+                <Button
+                  variant="secondary"
+                  size="lg"
+                  onClick={handleScrollToEnquiry}
+                  rightIcon={<ArrowRight className="w-4 h-4" />}
+                >
+                  Direct Form Bharein
+                </Button>
+              </div>
             </div>
           </div>
         </div>
 
-        {/* Related Services Section */}
-        {relatedServices.length > 0 && (
-          <div className="py-16 border-b border-mono-200">
-            <span className="font-mono text-eyebrow text-mono-400 uppercase block mb-2">
-              [ASSOCIATED CRAFTSMANSHIP]
-            </span>
-            <h2 className="text-heading-lg font-bold text-mono-950 mb-8">
-              Related Installation & Fabrication Services
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {relatedServices.map((srv, idx) => (
-                <ServiceCard key={srv.id} service={srv} index={idx + 1} />
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Related Projects Section */}
-        {relatedProjects.length > 0 && (
-          <div className="py-16 border-b border-mono-200">
-            <span className="font-mono text-eyebrow text-mono-400 uppercase block mb-2">
-              [CASE STUDIES]
-            </span>
-            <h2 className="text-heading-lg font-bold text-mono-950 mb-8">
-              Projects Featuring This System
-            </h2>
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
-              {relatedProjects.map((proj, idx) => (
-                <ProjectCard key={proj.id} project={proj} index={idx + 1} />
-              ))}
-            </div>
-          </div>
-        )}
-
         {/* Direct Enquiry Section Anchor */}
         <div id="enquiry-section" className="py-16 max-w-2xl mx-auto">
-          <EnquiryForm defaultService={product.categoryName} />
+          <EnquiryForm defaultService={product.categoryName || product.name} />
         </div>
       </div>
     </PageContainer>

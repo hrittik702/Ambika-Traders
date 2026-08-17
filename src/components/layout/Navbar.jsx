@@ -1,8 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { NavLink, Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, Clock, ArrowRight } from 'lucide-react';
+import { Menu, X, Phone, Clock, ArrowRight, ShoppingBag } from 'lucide-react';
 import { navigationData } from '@/data/navigation';
 import Button from '@/components/ui/Button';
+import { useCart } from '@/context/CartContext';
 import { cn } from '@/lib/utils';
 
 /**
@@ -12,11 +13,12 @@ import { cn } from '@/lib/utils';
  * - Editorial Logo with Brand Sub-Tagline
  * - Nav links with subtle underline active indicators
  * - Accessible mobile menu with Escape key listener & body scroll locking
- * - Scrolled state with compact elevation and backdrop blur
+ * - Quote Cart trigger with live item count
  */
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
+  const { totalCount, openCart } = useCart();
   const location = useLocation();
 
   // Close mobile menu on route change
@@ -138,7 +140,22 @@ export function Navbar() {
           </div>
 
           {/* Action CTA & Mobile Toggle */}
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
+            {/* Quote Cart Button */}
+            <button
+              type="button"
+              onClick={openCart}
+              className="relative p-2.5 rounded-xs border border-mono-300 text-mono-950 hover:bg-mono-100 transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mono-950 flex items-center gap-2"
+              aria-label={`Open Quote Cart with ${totalCount} items`}
+            >
+              <ShoppingBag className="w-5 h-5" aria-hidden="true" />
+              {totalCount > 0 && (
+                <span className="inline-flex items-center justify-center min-w-5 h-5 px-1 bg-mono-950 text-mono-0 font-mono text-[0.68rem] font-bold rounded-full">
+                  {totalCount}
+                </span>
+              )}
+            </button>
+
             <div className="hidden sm:block">
               <Button
                 as="link"
