@@ -3,8 +3,8 @@ import { useNavigate, useLocation, Link } from 'react-router-dom';
 import { useAuth } from '@/context/AuthContext';
 import Button from '@/components/ui/Button';
 import Input from '@/components/forms/Input';
-import { ShieldCheck, Lock, Mail, ArrowRight, Eye, EyeOff } from 'lucide-react';
-import { isFirebaseConfigured } from '@/lib/firebase/config';
+import { ShieldCheck, Mail, ArrowRight, Eye, EyeOff } from 'lucide-react';
+import Stars from '@/components/ui/Stars';
 
 export function AdminLogin() {
   const [email, setEmail] = useState('');
@@ -40,16 +40,13 @@ export function AdminLogin() {
     }
   };
 
-  const handleFillSuperadmin = () => {
-    setEmail('alphavishwakarma9@gmail.com');
-    setPassword('12345678');
-    setError('');
-  };
+
 
   return (
-    <div className="min-h-screen bg-mono-950 text-mono-0 flex flex-col justify-between font-intern p-6 md:p-12">
+    <div className="relative h-[100dvh] w-full bg-mono-950 text-mono-0 flex flex-col justify-between font-intern p-6 md:p-12 overflow-hidden">
+      <Stars />
       {/* Top Bar */}
-      <div className="flex items-center justify-between">
+      <div className="relative z-10 flex items-center justify-between">
         <Link to="/" className="flex flex-col group">
           <span className="font-bold text-lg md:text-xl tracking-tighter text-mono-0 uppercase group-hover:text-mono-300">
             AMBIKA TRADERS
@@ -68,7 +65,7 @@ export function AdminLogin() {
       </div>
 
       {/* Main Login Card */}
-      <div className="w-full max-w-md mx-auto my-12 bg-mono-900 border border-mono-800 p-8 md:p-10 rounded-xs shadow-floating space-y-6">
+      <div className="relative z-10 w-full max-w-md mx-auto my-auto bg-mono-900/80 backdrop-blur-md border border-mono-800 p-8 md:p-10 rounded-xs shadow-floating space-y-6">
         <div className="space-y-2">
           <div className="w-12 h-12 bg-mono-0 text-mono-950 rounded-xs flex items-center justify-center mb-4">
             <ShieldCheck className="w-6 h-6" />
@@ -84,13 +81,7 @@ export function AdminLogin() {
           </p>
         </div>
 
-        {/* Configuration Status Indicator */}
-        <div className="p-3 bg-mono-850 border border-mono-750 rounded-xs flex items-center justify-between text-xs font-mono">
-          <span className="text-mono-400">Firebase Backend:</span>
-          <span className={isFirebaseConfigured ? 'text-emerald-400 font-semibold' : 'text-amber-400 font-semibold'}>
-            {isFirebaseConfigured ? '● Live Firestore Connected' : '○ Local Storage Mode'}
-          </span>
-        </div>
+
 
         {error && (
           <div className="p-3.5 bg-red-950/60 border border-red-800 text-red-200 text-xs rounded-xs font-mono">
@@ -154,23 +145,11 @@ export function AdminLogin() {
           </div>
         </form>
 
-        {/* Superadmin Credentials Helper */}
-        <div className="pt-4 border-t border-mono-800 text-center space-y-2">
-          <span className="text-[0.7rem] font-mono text-mono-400 block uppercase">
-            [INITIAL SUPERADMIN ACCESS]
-          </span>
-          <button
-            type="button"
-            onClick={handleFillSuperadmin}
-            className="w-full text-xs font-mono py-2 px-3 bg-mono-850 hover:bg-mono-800 border border-mono-750 text-mono-300 hover:text-mono-0 rounded-xs transition-colors"
-          >
-            Auto-Fill: alphavishwakarma9@gmail.com
-          </button>
-        </div>
+
       </div>
 
       {/* Footer */}
-      <div className="text-center text-xs font-mono text-mono-500">
+      <div className="relative z-10 text-center text-xs font-mono text-mono-500">
         Ambika Traders • Management Control System • Protected by Google Firebase
       </div>
     </div>

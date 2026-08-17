@@ -1,6 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowUpRight, CheckCircle2 } from 'lucide-react';
+import Image from '@/components/ui/Image';
 import { cn } from '@/lib/utils';
 
 /**
@@ -12,12 +13,27 @@ export function ServiceCard({ service, index, className }) {
   return (
     <article
       className={cn(
-        'group relative flex flex-col justify-between p-8 bg-mono-0 border border-mono-300 transition-all duration-300 hover:border-mono-950 hover:shadow-card rounded-xs',
+        'group relative flex flex-col bg-mono-0 border border-mono-300 transition-all duration-300 hover:border-mono-950 hover:shadow-card rounded-xs overflow-hidden',
         className
       )}
     >
-      <div>
-        <div className="flex items-center justify-end mb-6">
+      {/* Service Image */}
+      {service.image && (
+        <div className="relative aspect-[4/3] w-full bg-mono-100 border-b border-mono-200 overflow-hidden">
+          <Image
+            src={service.image}
+            alt={service.title}
+            aspect="auto"
+            hoverZoom
+            fallbackLabel={service.title}
+          />
+        </div>
+      )}
+
+      {/* Content Wrapper */}
+      <div className="flex flex-col flex-1 p-6 md:p-8 justify-between">
+        <div>
+          <div className="flex items-center justify-end mb-6">
           <div className="text-mono-950 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
             <ArrowUpRight className="w-5 h-5" aria-hidden="true" />
           </div>
@@ -48,9 +64,10 @@ export function ServiceCard({ service, index, className }) {
         )}
       </div>
 
-      <div className="mt-8 pt-4 border-t border-mono-200 flex items-center justify-between text-xs font-mono uppercase tracking-wider text-mono-500">
-        <span>Execution & Fitout</span>
-        <span className="text-mono-950 font-semibold font-intern">Service Details</span>
+        <div className="mt-8 pt-4 border-t border-mono-200 flex items-center justify-between text-xs font-mono uppercase tracking-wider text-mono-500">
+          <span>Execution & Fitout</span>
+          <span className="text-mono-950 font-semibold font-intern">Service Details</span>
+        </div>
       </div>
     </article>
   );

@@ -10,7 +10,7 @@ import Stats from '@/components/sections/Stats';
  */
 export function Hero() {
   return (
-    <section className="relative w-full bg-mono-950 text-mono-0 flex flex-col justify-start border-b border-mono-800 overflow-hidden pt-20">
+    <section className="relative w-full bg-mono-950 text-mono-0 flex flex-col justify-start border-b border-mono-800 overflow-hidden">
       {/* Background Architectural Image with subtle dark overlay */}
       <div data-hero-image className="absolute inset-0 z-0">
         <Image
@@ -35,7 +35,7 @@ export function Hero() {
       />
 
       {/* Content Container (Forces 100vh minus navbar) */}
-      <div className="flex flex-col justify-center min-h-[calc(100vh-80px)] relative z-content w-full pb-12 pt-10 md:pt-16 lg:pt-20">
+      <div className="flex flex-col justify-center min-h-[calc(100vh-112px)] relative z-content w-full">
         <div className="content-container w-full">
         <div className="max-w-4xl">
           {/* Main Headline */}

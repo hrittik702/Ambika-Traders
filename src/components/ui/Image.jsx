@@ -42,7 +42,7 @@ export const Image = React.forwardRef(({
   return (
     <div
       className={cn(
-        'relative overflow-hidden select-none',
+        'relative overflow-hidden select-none w-full h-full',
         !borderless && 'bg-mono-100 border border-mono-200 rounded-xs',
         aspectClasses[aspect],
         overlayClasses[overlay],
