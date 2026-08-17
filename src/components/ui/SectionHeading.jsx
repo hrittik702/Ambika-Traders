@@ -33,24 +33,6 @@ export function SectionHeading({
       )}
     >
       <div className={cn(align === 'split' ? 'max-w-2xl' : 'w-full')}>
-        {/* Eyebrow & Index */}
-        {(index || labelText) && (
-          <div data-heading-tag className="flex items-center gap-3 mb-3">
-            {index && (
-              <span className={cn(
-                'font-mono text-eyebrow font-semibold uppercase tracking-widest',
-                isDark ? 'text-mono-400' : 'text-mono-500'
-              )}>
-                [{index}]
-              </span>
-            )}
-            {labelText && (
-              <Badge variant={isDark ? 'outlineDark' : 'outline'}>
-                {labelText}
-              </Badge>
-            )}
-          </div>
-        )}
 
         {/* Section Main Title */}
         <h2

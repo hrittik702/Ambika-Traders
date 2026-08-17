@@ -35,11 +35,7 @@ export function ProjectCard({ project, index, className }) {
           </Badge>
         </div>
 
-        {index && (
-          <div className="absolute bottom-4 right-4 z-content bg-mono-950/90 backdrop-blur-sm text-mono-0 font-mono text-xs px-2.5 py-1 rounded-xs">
-            {`[${String(index).padStart(2, '0')}]`}
-          </div>
-        )}
+
       </div>
 
       {/* Project Meta */}

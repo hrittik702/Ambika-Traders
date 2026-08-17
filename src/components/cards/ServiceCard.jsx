@@ -17,10 +17,7 @@ export function ServiceCard({ service, index, className }) {
       )}
     >
       <div>
-        <div className="flex items-center justify-between mb-6">
-          <span className="font-mono text-eyebrow text-mono-400 font-semibold uppercase">
-            {index ? `[SERVICE ${String(index).padStart(2, '0')}]` : '[SERVICE]'}
-          </span>
+        <div className="flex items-center justify-end mb-6">
           <div className="text-mono-950 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform">
             <ArrowUpRight className="w-5 h-5" aria-hidden="true" />
           </div>

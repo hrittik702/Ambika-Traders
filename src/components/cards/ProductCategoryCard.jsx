@@ -17,10 +17,8 @@ export function ProductCategoryCard({ category, index, className }) {
       )}
     >
       <div>
-        <div className="flex items-center justify-between mb-6">
-          <span className="font-mono text-eyebrow text-mono-400 font-semibold uppercase">
-            {index ? `[CATEGORY ${String(index).padStart(2, '0')}]` : '[CATEGORY]'}
-          </span>
+        <div className="flex items-center justify-end mb-6">
+
           <div className="w-8 h-8 rounded-full border border-mono-300 flex items-center justify-center text-mono-950 group-hover:border-mono-950 group-hover:bg-mono-950 group-hover:text-mono-0 transition-colors">
             <ArrowRight className="w-4 h-4" aria-hidden="true" />
           </div>

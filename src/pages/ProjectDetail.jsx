@@ -66,9 +66,7 @@ export function ProjectDetail() {
           {/* Project Highlights */}
           {project.highlights && project.highlights.length > 0 && (
             <div className="mt-8 pt-6 border-t border-mono-200">
-              <h3 className="text-eyebrow font-mono font-semibold uppercase text-mono-950 mb-3">
-                [PROJECT HIGHLIGHTS & ARCHITECTURAL SPECS]
-              </h3>
+
               <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                 {project.highlights.map((item, idx) => (
                   <li key={idx} className="flex items-start gap-2 text-body-sm text-mono-700">
@@ -83,9 +81,7 @@ export function ProjectDetail() {
 
         {/* Media Gallery */}
         <div className="py-12 border-b border-mono-200">
-          <span className="font-mono text-eyebrow text-mono-400 uppercase block mb-4">
-            [PROJECT PHOTOGRAPHY]
-          </span>
+
           <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {(project.gallery || [project.image]).map((img, idx) => (
               <div key={idx} className="aspect-[4/3]">
@@ -105,9 +101,7 @@ export function ProjectDetail() {
         {/* Related Products Installed */}
         {relatedProducts.length > 0 && (
           <div className="py-16 border-b border-mono-200">
-            <span className="font-mono text-eyebrow text-mono-400 uppercase block mb-2">
-              [INSTALLED SYSTEMS]
-            </span>
+
             <h2 className="text-heading-lg font-bold text-mono-950 mb-8">
               Products Specified in this Project
             </h2>
@@ -122,9 +116,7 @@ export function ProjectDetail() {
         {/* Related Services Utilized */}
         {relatedServices.length > 0 && (
           <div className="py-16 border-b border-mono-200">
-            <span className="font-mono text-eyebrow text-mono-400 uppercase block mb-2">
-              [EXECUTION SCOPE]
-            </span>
+
             <h2 className="text-heading-lg font-bold text-mono-950 mb-8">
               Services Deployed for this Execution
             </h2>

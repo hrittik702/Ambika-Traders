@@ -70,9 +70,7 @@ export function ServiceDetail() {
 
         {/* Service Hero */}
         <div className="max-w-4xl pb-16 border-b border-mono-200">
-          <span className="font-mono text-eyebrow text-mono-400 uppercase block mb-3">
-            [SERVICE EXECUTION DETAILS]
-          </span>
+
           <h1 className="text-heading-xl md:text-display-md font-bold text-mono-950 tracking-tight">
             {service.title}
           </h1>
@@ -83,9 +81,7 @@ export function ServiceDetail() {
           {/* Scope of Work Breakdown */}
           {service.scopeOfWork && service.scopeOfWork.length > 0 && (
             <div className="mt-10 p-8 bg-mono-50 border border-mono-300 rounded-xs shadow-subtle">
-              <h3 className="text-eyebrow font-mono font-semibold uppercase text-mono-950 mb-4">
-                [SCOPE OF WORK & INSTALLATION WORKFLOW]
-              </h3>
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                 {service.scopeOfWork.map((step, idx) => (
                   <div key={idx} className="flex items-start gap-3">

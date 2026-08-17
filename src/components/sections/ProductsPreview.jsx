@@ -92,11 +92,7 @@ export function ProductsPreview() {
                     {/* Featured Content Callout */}
                     <div className="lg:col-span-5 p-8 md:p-10 flex flex-col justify-between bg-mono-50">
                       <div className="space-y-4">
-                        <div className="flex items-center gap-2">
-                          <span className="font-mono text-eyebrow font-semibold uppercase tracking-wider text-mono-500">
-                            [FEATURED SPECIFICATION]
-                          </span>
-                        </div>
+
 
                         <h3 className="text-heading-lg font-bold text-mono-950 tracking-tight">
                           {primaryProduct.name}

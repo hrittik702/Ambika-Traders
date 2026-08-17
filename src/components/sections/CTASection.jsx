@@ -18,9 +18,7 @@ export function CTASection() {
 
       <div className="content-container relative z-content">
         <div data-cta-content className="max-w-3xl">
-          <span className="font-mono text-eyebrow text-mono-400 uppercase tracking-widest block mb-4">
-            [CONVERSION & ENQUIRY — 06]
-          </span>
+
 
           <h2 className="text-display-lg md:text-display-xl font-bold tracking-tighter text-mono-0 leading-[1.06]">
             Aapko product chahiye ya pura solution?

@@ -109,9 +109,7 @@ export function ProductDetail() {
               {/* Key Features */}
               {product.features && product.features.length > 0 && (
                 <div className="mt-6 pt-6 border-t border-mono-200">
-                  <h3 className="text-eyebrow font-mono font-semibold uppercase text-mono-950 mb-3">
-                    [KEY SPECIFICATIONS]
-                  </h3>
+
                   <ul className="space-y-2.5">
                     {product.features.map((feat, idx) => (
                       <li key={idx} className="flex items-start gap-2 text-body-sm text-mono-700">

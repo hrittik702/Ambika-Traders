@@ -32,9 +32,7 @@ export function WhyAmbika() {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
           {/* Left Column: Heading & Value Proposition */}
           <div data-heading-container className="lg:col-span-5 space-y-6">
-            <span data-heading-tag className="font-mono text-eyebrow text-mono-500 uppercase tracking-widest block">
-              [HERITAGE & TRUST — 04]
-            </span>
+
             <h2 data-heading-title className="text-heading-xl md:text-display-md font-bold tracking-tight text-mono-950">
               Kyun Chunein Ambika Traders?
             </h2>

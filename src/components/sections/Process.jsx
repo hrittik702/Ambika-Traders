@@ -53,9 +53,7 @@ export function Process() {
               className="relative flex flex-col justify-between border-t-2 border-mono-950 pt-6 space-y-4"
             >
               <div>
-                <span className="font-mono text-eyebrow text-mono-950 font-bold uppercase tracking-widest block mb-2">
-                  [STEP {step.number}]
-                </span>
+
                 <h3 className="text-heading-md font-semibold text-mono-950 tracking-tight">
                   {step.title}
                 </h3>

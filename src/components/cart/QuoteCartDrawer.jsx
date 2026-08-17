@@ -113,24 +113,24 @@ export function QuoteCartDrawer() {
       role="dialog"
       aria-modal="true"
       aria-label="Quotation Cart Drawer"
-      className="fixed inset-0 z-modal bg-mono-950/60 backdrop-blur-sm flex justify-end animate-fade-in font-intern"
+      className="fixed inset-0 z-[10000] bg-mono-950/70 backdrop-blur-md flex justify-end animate-fade-in font-intern"
       onClick={closeCart}
     >
       <div
-        className="w-full max-w-xl bg-mono-0 h-full flex flex-col shadow-floating border-l border-mono-300 relative"
+        className="w-full max-w-xl bg-mono-0 h-full flex flex-col shadow-floating border-l-2 border-mono-950 relative"
         onClick={(e) => e.stopPropagation()}
       >
         {/* Header */}
         <div className="p-6 border-b border-mono-200 flex items-center justify-between bg-mono-50">
           <div className="flex items-center gap-3">
-            <div className="w-10 h-10 rounded-xs bg-mono-950 text-mono-0 flex items-center justify-center">
+            <div className="w-10 h-10 rounded-xs bg-mono-950 text-mono-0 flex items-center justify-center shadow-subtle">
               <ShoppingBag className="w-5 h-5" aria-hidden="true" />
             </div>
             <div>
               <h2 className="text-heading-sm font-bold text-mono-950 uppercase tracking-tight">
                 Quotation Cart
               </h2>
-              <span className="font-mono text-xs text-mono-500">
+              <span className="font-mono text-xs text-mono-600 font-semibold">
                 {totalCount} {totalCount === 1 ? 'Item' : 'Items'} Selected • No Login Required
               </span>
             </div>
@@ -138,7 +138,7 @@ export function QuoteCartDrawer() {
           <button
             type="button"
             onClick={closeCart}
-            className="p-2 text-mono-600 hover:text-mono-950 hover:bg-mono-200 rounded-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mono-950"
+            className="p-2 text-mono-700 hover:text-mono-950 hover:bg-mono-200 border border-mono-300 rounded-xs transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mono-950 cursor-pointer"
             aria-label="Close Cart"
           >
             <X className="w-5 h-5" aria-hidden="true" />

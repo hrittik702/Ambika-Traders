@@ -1,14 +1,13 @@
 import React, { useRef } from 'react';
 import PageContainer from '@/components/layout/PageContainer';
 import Hero from '@/components/sections/Hero';
-import Stats from '@/components/sections/Stats';
 import ProductsPreview from '@/components/sections/ProductsPreview';
 import ProductCategories from '@/components/sections/ProductCategories';
 import ServicesPreview from '@/components/sections/ServicesPreview';
 import ProjectsPreview from '@/components/sections/ProjectsPreview';
 import WhyAmbika from '@/components/sections/WhyAmbika';
 import Process from '@/components/sections/Process';
-import CTASection from '@/components/sections/CTASection';
+
 import useGsap from '@/hooks/useGsap';
 import { GSAP_EASING } from '@/lib/animations/gsap';
 
@@ -42,24 +41,7 @@ export function Home() {
       .fromTo('[data-hero-cta]', { opacity: 0, y: 15 }, { opacity: 1, y: 0, duration: 0.6, stagger: 0.15 }, 0.8)
       .fromTo('[data-hero-pattern]', { opacity: 0 }, { opacity: 0.2, duration: 1.5 }, 0.5);
 
-    // 2. Statistics Section ScrollTrigger
-    gsap.fromTo(
-      '[data-stat-card]',
-      { opacity: 0, y: 30 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.8,
-        stagger: 0.15,
-        ease: GSAP_EASING.editorial,
-        scrollTrigger: {
-          trigger: '[data-stats-section]',
-          start: 'top 85%',
-          toggleActions: 'play none none none',
-          once: true,
-        },
-      }
-    );
+
 
     // 3. Section Headings ScrollTrigger
     const headings = gsap.utils.toArray('[data-heading-container]');
@@ -196,23 +178,7 @@ export function Home() {
       }
     );
 
-    // 10. CTA Section Reveal
-    gsap.fromTo(
-      '[data-cta-content]',
-      { opacity: 0, y: 35 },
-      {
-        opacity: 1,
-        y: 0,
-        duration: 0.9,
-        ease: GSAP_EASING.editorial,
-        scrollTrigger: {
-          trigger: '[data-cta-section]',
-          start: 'top 80%',
-          toggleActions: 'play none none none',
-          once: true,
-        },
-      }
-    );
+
   }, [], containerRef);
 
   return (
@@ -221,8 +187,7 @@ export function Home() {
         {/* 03. Hero Section */}
         <Hero />
 
-        {/* 04. Trust / Statistics Section */}
-        <Stats />
+
 
         {/* 05. Featured Products Section (Priority 01) */}
         <ProductsPreview />
@@ -242,8 +207,7 @@ export function Home() {
         {/* 10. How We Work (4-Step Process) */}
         <Process />
 
-        {/* 11. Conversion CTA Section */}
-        <CTASection />
+
       </div>
     </PageContainer>
   );

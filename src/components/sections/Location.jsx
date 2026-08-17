@@ -15,9 +15,7 @@ export function Location() {
         <div data-location-content className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
           {/* Left Column: Showroom Visit Info */}
           <div className="lg:col-span-6 space-y-6">
-            <span className="font-mono text-eyebrow text-mono-500 uppercase tracking-widest block">
-              [SHOWROOM & WORKSHOP — 07]
-            </span>
+
 
             <h2 className="text-heading-xl md:text-display-md font-bold tracking-tight text-mono-950">
               Showroom Visit Karein
