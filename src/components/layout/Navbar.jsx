@@ -6,8 +6,13 @@ import Button from '@/components/ui/Button';
 import { cn } from '@/lib/utils';
 
 /**
- * Ambika Traders — Global Header & Navigation
- * Includes Utility Top Bar, Main Navigation, and Mobile Overlay Drawer.
+ * Ambika Traders — Global Header & Navigation (Stage 02)
+ * Features:
+ * - Utility Bar with showroom hours and direct phone line
+ * - Editorial Logo with Brand Sub-Tagline
+ * - Nav links with subtle underline active indicators
+ * - Accessible mobile menu with Escape key listener & body scroll locking
+ * - Scrolled state with compact elevation and backdrop blur
  */
 export function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -22,7 +27,7 @@ export function Navbar() {
   // Handle scroll appearance
   useEffect(() => {
     const handleScroll = () => {
-      if (window.scrollY > 20) {
+      if (window.scrollY > 25) {
         setIsScrolled(true);
       } else {
         setIsScrolled(false);
@@ -32,6 +37,18 @@ export function Navbar() {
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
+
+  // Keyboard accessibility: Close mobile menu on Escape key
+  useEffect(() => {
+    const handleKeyDown = (e) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    return () => window.removeEventListener('keydown', handleKeyDown);
+  }, [mobileMenuOpen]);
 
   // Lock body scroll when mobile menu is open
   useEffect(() => {
@@ -46,9 +63,9 @@ export function Navbar() {
   }, [mobileMenuOpen]);
 
   return (
-    <header className="sticky top-0 z-50 w-full font-intern transition-all duration-300">
-      {/* Utility Bar */}
-      <div className="hidden lg:block bg-mono-950 text-mono-300 border-b border-mono-800 text-xs py-2 px-6">
+    <header className="relative w-full font-intern z-navbar">
+      {/* 1. Utility Top Bar (In document flow — scrolls away naturally on desktop) */}
+      <div className="hidden lg:block bg-mono-950 text-mono-300 border-b border-mono-800 text-xs py-2 w-full">
         <div className="content-container flex items-center justify-between">
           <div className="flex items-center gap-6">
             <span className="font-normal text-mono-200">
@@ -56,7 +73,7 @@ export function Navbar() {
             </span>
           </div>
 
-          <div className="flex items-center gap-6 text-mono-400">
+          <div className="flex items-center gap-6 text-mono-400 font-mono text-[0.72rem]">
             <div className="flex items-center gap-1.5">
               <Clock className="w-3.5 h-3.5 text-mono-300" aria-hidden="true" />
               <span>{navigationData.utilityBar.hours}</span>
@@ -74,18 +91,20 @@ export function Navbar() {
         </div>
       </div>
 
-      {/* Main Navbar */}
+      {/* 2. Main Navbar (Sticky at top-0 with 100% solid white background to eliminate bleed-through) */}
       <nav
         aria-label="Main Navigation"
         className={cn(
-          'w-full transition-colors duration-300 border-b',
+          'sticky top-0 z-navbar w-full bg-mono-0 transition-all duration-200 border-b',
           isScrolled
-            ? 'bg-mono-0/95 backdrop-blur-md border-mono-200 shadow-subtle'
-            : 'bg-mono-0 border-mono-200'
+            ? 'border-mono-300 shadow-card'
+            : 'border-mono-200'
         )}
       >
-        <div className="content-container flex items-center justify-between h-20">
-          {/* Brand Logo */}
+        <div
+          className="content-container flex items-center justify-between h-20"
+        >
+          {/* Brand Identity */}
           <Link
             to="/"
             className="flex flex-col focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mono-950 rounded-xs group"
@@ -106,7 +125,7 @@ export function Navbar() {
                 to={item.path}
                 className={({ isActive }) =>
                   cn(
-                    'text-sm font-medium tracking-tight py-1 transition-colors relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mono-950 rounded-xs',
+                    'text-nav font-medium py-1 transition-colors relative focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mono-950 rounded-xs',
                     isActive
                       ? 'text-mono-950 font-semibold after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-mono-950'
                       : 'text-mono-600 hover:text-mono-950'
@@ -124,8 +143,9 @@ export function Navbar() {
               <Button
                 as="link"
                 to={navigationData.primaryCta.path}
-                variant="primary"
+                variant="secondary"
                 size="md"
+                className="border-mono-950 text-mono-950 hover:bg-mono-950 hover:text-mono-0 font-semibold shadow-sm"
                 rightIcon={<ArrowRight className="w-4 h-4" />}
               >
                 {navigationData.primaryCta.label}
@@ -139,28 +159,33 @@ export function Navbar() {
               className="md:hidden p-2.5 text-mono-950 rounded-xs border border-mono-200 hover:bg-mono-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-mono-950"
               aria-label={mobileMenuOpen ? 'Close Menu' : 'Open Navigation Menu'}
               aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation-drawer"
             >
-              {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
+              {mobileMenuOpen ? <X className="w-6 h-6" aria-hidden="true" /> : <Menu className="w-6 h-6" aria-hidden="true" />}
             </button>
           </div>
         </div>
       </nav>
 
-      {/* Mobile Drawer Menu */}
+      {/* 3. Mobile Navigation Overlay & Drawer */}
       {mobileMenuOpen && (
         <div
-          className="fixed inset-0 top-[81px] z-40 bg-mono-950/40 backdrop-blur-sm md:hidden"
+          id="mobile-navigation-drawer"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Mobile Navigation"
+          className="fixed inset-0 top-20 z-mobile-menu bg-mono-950/60 backdrop-blur-sm md:hidden animate-fade-in"
           onClick={() => setMobileMenuOpen(false)}
         >
           <div
-            className="bg-mono-0 w-full max-h-[calc(100vh-81px)] overflow-y-auto border-b border-mono-200 p-6 flex flex-col justify-between shadow-floating"
+            className="bg-mono-0 w-full max-h-[calc(100vh-5rem)] overflow-y-auto border-b border-mono-300 p-6 flex flex-col justify-between shadow-floating"
             onClick={(e) => e.stopPropagation()}
           >
             <div className="flex flex-col space-y-4">
-              <span className="text-xs font-mono tracking-widest text-mono-400 uppercase">
-                Menu Navigation
+              <span className="text-eyebrow font-mono text-mono-400 uppercase">
+                [NAVIGATION MENU]
               </span>
-              <div className="flex flex-col space-y-2">
+              <div className="flex flex-col space-y-1.5">
                 {navigationData.primaryNav.map((item) => (
                   <NavLink
                     key={item.path}
@@ -168,7 +193,7 @@ export function Navbar() {
                     onClick={() => setMobileMenuOpen(false)}
                     className={({ isActive }) =>
                       cn(
-                        'text-lg font-medium py-2 px-3 rounded-xs transition-colors',
+                        'text-body-lg font-medium py-2.5 px-3 rounded-xs transition-colors',
                         isActive
                           ? 'bg-mono-950 text-mono-0 font-semibold'
                           : 'text-mono-800 hover:bg-mono-100'
@@ -185,17 +210,22 @@ export function Navbar() {
               <Button
                 as="link"
                 to={navigationData.primaryCta.path}
-                variant="primary"
+                variant="secondary"
                 size="lg"
-                className="w-full"
+                className="w-full border-mono-950 text-mono-950 hover:bg-mono-950 hover:text-mono-0 font-semibold shadow-sm"
                 onClick={() => setMobileMenuOpen(false)}
                 rightIcon={<ArrowRight className="w-4 h-4" />}
               >
                 {navigationData.primaryCta.label}
               </Button>
 
-              <div className="text-xs text-mono-500 space-y-1 text-center pt-2">
-                <p>{navigationData.utilityBar.phone}</p>
+              <div className="text-xs text-mono-500 font-mono space-y-1.5 text-center pt-2">
+                <div className="flex items-center justify-center gap-1.5">
+                  <Phone className="w-3.5 h-3.5 text-mono-950" aria-hidden="true" />
+                  <a href={`tel:${navigationData.utilityBar.phone.replace(/\s+/g, '')}`} className="hover:underline">
+                    {navigationData.utilityBar.phone}
+                  </a>
+                </div>
                 <p>{navigationData.utilityBar.hours}</p>
               </div>
             </div>

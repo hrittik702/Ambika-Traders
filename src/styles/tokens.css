@@ -1,45 +1,47 @@
 /**
- * Ambika Traders — Design System Tokens
- * Single source of truth for CSS variables and styling constants.
- * High-contrast editorial monochrome aesthetic (Black + White + Neutral Grays).
+ * Ambika Traders — Global Design System Tokens (Stage 02)
+ * Single source of truth for CSS variables, colors, typography, spacing, motion, and z-index.
+ * Premium Monochrome Editorial Aesthetic (Black + White + Neutral Grays).
  */
 
 :root {
   /* ==========================================================================
-     Color Tokens — Monochrome Foundation
+     1. Global Color Tokens — Monochrome System
      ========================================================================== */
   --color-bg-primary: #ffffff;
-  --color-bg-secondary: #f7f7f7;
-  --color-bg-surface: #fbfbfb;
-  --color-bg-dark: #0a0a0a;
-  --color-bg-dark-secondary: #141414;
-  --color-bg-elevated: #1e1e1e;
+  --color-bg-secondary: #f5f5f3;        /* Subtle warm-neutral white */
+  --color-bg-surface: #fbfbfb;          /* Clean surface card canvas */
+  --color-bg-muted: #f0f0ee;            /* Alternating neutral backdrop */
+  --color-bg-dark: #0a0a0a;             /* Pure near-black contrast canvas */
+  --color-bg-dark-soft: #151515;        /* Soft elevated dark canvas */
+  --color-bg-dark-elevated: #1e1e1e;
   
-  --color-text-primary: #0a0a0a;
-  --color-text-secondary: #404040;
-  --color-text-muted: #737373;
+  --color-text-primary: #0a0a0a;        /* High-contrast near-black typography */
+  --color-text-secondary: #4a4a4a;      /* Refined editorial body gray */
+  --color-text-muted: #777777;          /* Metadata / subtle gray */
   --color-text-subtle: #8a8a8a;
-  --color-text-inverse: #ffffff;
+  --color-text-inverse: #ffffff;        /* Crisp white text on dark */
   --color-text-inverse-secondary: #d4d4d4;
   --color-text-inverse-muted: #a3a3a3;
 
-  --color-border: #e5e5e5;
-  --color-border-subtle: #f0f0f0;
-  --color-border-strong: #171717;
-  --color-border-dark: #262626;
+  --color-border: #dcdcdc;              /* Clean 1px architectural divider */
+  --color-border-subtle: #eeeeee;
+  --color-border-strong: #0a0a0a;
+  --color-border-dark: #2a2a2a;         /* Dark section 1px border */
   --color-border-dark-subtle: #1c1c1c;
 
-  /* Accent is extremely restrained; defaults to pure contrast monochrome */
+  /* Accent is extremely restrained; monochrome-first */
   --color-accent: #0a0a0a;
   --color-accent-hover: #262626;
+  --color-accent-contrast: #ffffff;
   --color-accent-subtle: #f4f4f4;
 
-  /* Focus outline for WCAG 2.2 AA */
+  /* WCAG 2.2 AA Focus Indicators */
   --color-focus-ring: #0a0a0a;
   --color-focus-ring-inverse: #ffffff;
 
   /* ==========================================================================
-     Typography Tokens — INTERN Font System
+     2. Typography Tokens — INTERN Font System
      ========================================================================== */
   --font-intern: 'INTERN', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
   
@@ -58,7 +60,7 @@
   --tracking-widest: 0.12em;
 
   /* ==========================================================================
-     Spacing Tokens — Editorial Rhythm
+     3. Section Spacing Scale
      ========================================================================== */
   --space-0: 0px;
   --space-1: 0.25rem;  /* 4px */
@@ -76,14 +78,19 @@
   --space-32: 8rem;    /* 128px */
   --space-40: 10rem;   /* 160px */
 
-  /* Section Spacing */
-  --section-space-y-sm: clamp(3.5rem, 6vw, 5rem);
-  --section-space-y-md: clamp(5rem, 9vw, 7.5rem);
-  --section-space-y-lg: clamp(6.5rem, 12vw, 10rem);
-  --page-gutter: clamp(1rem, 4vw, 3.5rem);
+  /* Semantic Section Vertical Padding */
+  --section-xs: clamp(2rem, 3.5vw, 3rem);
+  --section-sm: clamp(3.5rem, 5vw, 4.5rem);
+  --section-md: clamp(4.5rem, 7vw, 6.5rem);
+  --section-lg: clamp(6rem, 10vw, 8.5rem);
+  --section-xl: clamp(7.5rem, 13vw, 11rem);
+
+  /* Page Gutters */
+  --page-gutter: clamp(1.25rem, 4vw, 3.5rem);
+  --page-gutter-sm: clamp(1rem, 2.5vw, 2rem);
 
   /* ==========================================================================
-     Radius & Shadow Tokens — Sharp, Architectural & Refined
+     4. Radius & Shadow Tokens — Architectural & Refined
      ========================================================================== */
   --radius-none: 0px;
   --radius-xs: 2px;
@@ -96,20 +103,35 @@
   --shadow-floating: 0 12px 32px -4px rgba(0, 0, 0, 0.08);
 
   /* ==========================================================================
-     Motion & Transition Tokens
+     5. Motion Tokens
      ========================================================================== */
-  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --motion-instant: 50ms;
+  --motion-fast: 150ms;
+  --motion-normal: 300ms;
+  --motion-slow: 500ms;
+  --motion-luxury: 700ms;
+
   --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
-  --duration-fast: 150ms;
-  --duration-normal: 300ms;
-  --duration-slow: 500ms;
-  --duration-luxury: 700ms;
+  --ease-emphasized: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
 
   /* ==========================================================================
-     Layout & Container Widths
+     6. Z-Index Scale Hierarchy
+     ========================================================================== */
+  --z-base: 0;
+  --z-content: 10;
+  --z-sticky: 20;
+  --z-navbar: 40;
+  --z-mobile-menu: 50;
+  --z-modal: 60;
+  --z-toast: 70;
+  --z-skip-link: 100;
+
+  /* ==========================================================================
+     7. Container & Header Dimensions
      ========================================================================== */
   --container-max-width: 1440px;
   --container-narrow-width: 1120px;
-  --header-height: 76px;
+  --header-height: 80px;
   --utility-bar-height: 38px;
 }

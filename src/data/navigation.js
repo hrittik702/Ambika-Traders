@@ -7,7 +7,7 @@ export const navigationData = {
   utilityBar: {
     tagline: 'Premium Aluminium, Sanitaryware & Interior Solutions',
     phone: '+91 98765 43210', // Authentic format placeholder
-    email: 'info@ambikatraders.com',
+    email: 'contact@ambikatraders.com',
     hours: 'Mon – Sat: 9:30 AM – 8:00 PM',
     locationShort: 'Showroom & Workshop',
   },
@@ -53,6 +53,7 @@ export const navigationData = {
       { label: 'Complete Interior Fitouts', path: '/services/complete-interior-fitouts' },
       { label: 'False Ceiling Installation', path: '/services/false-ceiling-gypsum-installation' },
       { label: 'Renovation & Upgrades', path: '/services/renovation-remodelling-services' },
+      { label: 'Architectural Consultation', path: '/services/architectural-fabrication-consulting' },
     ],
   }
 };

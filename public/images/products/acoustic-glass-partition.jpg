@@ -1,0 +1,56 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 800" width="1200" height="800">
+  <defs>
+    <linearGradient id="grad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#141414" />
+      <stop offset="100%" stop-color="#050505" />
+    </linearGradient>
+    <pattern id="grid" width="40" height="40" patternUnits="userSpaceOnUse">
+      <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#1f1f1f" stroke-width="0.75" />
+    </pattern>
+  </defs>
+
+  <!-- Background -->
+  <rect width="1200" height="800" fill="url(#grad)" />
+  <rect width="1200" height="800" fill="url(#grid)" opacity="0.65" />
+
+  <!-- Architectural Frame -->
+  <rect x="40" y="40" width="1120" height="720" fill="none" stroke="#2a2a2a" stroke-width="1.5" />
+  <rect x="52" y="52" width="1096" height="696" fill="none" stroke="#2a2a2a" stroke-width="0.5" stroke-dasharray="4 4" />
+
+  <!-- Diagonal Engineering Lines -->
+  <line x1="40" y1="40" x2="160" y2="160" stroke="#2a2a2a" stroke-width="0.75" />
+  <line x1="1160" y1="40" x2="1040" y2="160" stroke="#2a2a2a" stroke-width="0.75" />
+  <line x1="40" y1="760" x2="160" y2="640" stroke="#2a2a2a" stroke-width="0.75" />
+  <line x1="1160" y1="760" x2="1040" y2="640" stroke="#2a2a2a" stroke-width="0.75" />
+
+  <!-- Central Architectural Blueprint Graphic -->
+  <g transform="translate(600, 360)">
+    <!-- Outer Blueprint Circle -->
+    <circle r="120" fill="none" stroke="#2a2a2a" stroke-width="1" />
+    <circle r="90" fill="none" stroke="#2c2c2c" stroke-width="1" stroke-dasharray="6 6" />
+    <circle r="4" fill="#ffffff" />
+
+    <!-- Technical Crosshairs -->
+    <line x1="-140" y1="0" x2="140" y2="0" stroke="#2a2a2a" stroke-width="1" />
+    <line x1="0" y1="-140" x2="0" y2="140" stroke="#2a2a2a" stroke-width="1" />
+
+    <!-- Isometric Box Motif -->
+    <polygon points="0,-50 45,-25 45,25 0,50 -45,25 -45,-25" fill="#181818" stroke="#ffffff" stroke-width="1.5" />
+    <line x1="0" y1="0" x2="0" y2="50" stroke="#ffffff" stroke-width="1.5" />
+    <line x1="0" y1="0" x2="45" y2="-25" stroke="#ffffff" stroke-width="1.5" />
+    <line x1="0" y1="0" x2="-45" y2="-25" stroke="#ffffff" stroke-width="1.5" />
+  </g>
+
+  <!-- Typography Block -->
+  <g transform="translate(80, 670)">
+    <text x="0" y="0" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="13" font-weight="600" fill="#888888" letter-spacing="3">[PROD-03]</text>
+    <text x="0" y="32" font-family="'Inter', -apple-system, sans-serif" font-size="26" font-weight="700" fill="#ffffff" letter-spacing="-0.5">Acoustic Glass Partition System</text>
+    <text x="0" y="58" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="12" fill="#888888" letter-spacing="1">SECTION: Partitions</text>
+  </g>
+
+  <!-- Top Right Brand Stamp -->
+  <g transform="translate(960, 80)">
+    <text x="0" y="0" font-family="'Inter', -apple-system, sans-serif" font-size="12" font-weight="800" fill="#ffffff" letter-spacing="2">AMBIKA TRADERS</text>
+    <text x="0" y="16" font-family="'JetBrains Mono', 'Courier New', monospace" font-size="10" fill="#888888" letter-spacing="1">PRECISION FABRICATION</text>
+  </g>
+</svg>

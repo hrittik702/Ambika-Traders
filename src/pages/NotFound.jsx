@@ -32,7 +32,7 @@ export function NotFound() {
           <Button
             as="link"
             to="/products"
-            variant="outline"
+            variant="secondary"
             size="lg"
             leftIcon={<ArrowLeft className="w-4 h-4" />}
           >

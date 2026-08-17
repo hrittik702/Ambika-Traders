@@ -92,7 +92,7 @@ export function About() {
 
         {/* CTA to Contact */}
         <div data-fade-section className="py-16 text-center max-w-2xl mx-auto space-y-6">
-          <h2 className="text-heading-2 font-bold text-mono-950">
+          <h2 className="text-heading-lg md:text-heading-xl font-bold text-mono-950">
             Showroom Mein Samples Dekhein
           </h2>
           <p className="text-body text-mono-600">

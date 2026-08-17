@@ -1,155 +1,105 @@
 # Ambika Traders — Development Progress
 
 ## Project Status
-Stage 01 Completed (Foundation, Architecture, Content Mapping & Design System Setup). Ready for Stage 02.
+Stage 03 Completed (Complete Homepage: Hero, Trust, Products, Services, Projects, Process & Conversion). Ready for Stage 04 upon user instruction.
 
 ---
 
 ## Completed
-- [x] Initialized modern Vite + React project architecture.
-- [x] Configured Tailwind CSS with custom theme extensions, semantic monochrome tokens, and `INTERN` font mappings.
-- [x] Configured PostCSS and Autoprefixer.
-- [x] Created `src/styles/tokens.css` with semantic CSS variables for colors, typography scale, spacing scale, radius, and shadows.
-- [x] Created `src/styles/index.css` with `@font-face` definitions for INTERN, WCAG 2.2 `:focus-visible` ring styles, reduced motion rules, and editorial utility classes.
-- [x] Configured asset organization directory structure (`src/assets/images/products/`, `services/`, `projects/`, `brand/`, `general/`, `fonts/`, `icons/`).
-- [x] Implemented structured data models in Hinglish (Roman letters):
-  - `src/data/products.js` (Catalog with features, category bindings, relation keys)
-  - `src/data/productCategories.js` (Aluminium Doors & Windows, Sliding Partitions, Sanitaryware, Modular Kitchens, Wardrobes, False Ceiling, Hardware)
-  - `src/data/services.js` (Fabrication, Glass works, Interior execution, Ceilings, Renovation, Consultation)
-  - `src/data/projects.js` (Verified residential, commercial, and penthouse case studies)
-  - `src/data/navigation.js` (Primary nav order, utility bar, footer structures, Hinglish CTA "Enquiry Karein")
-  - `src/data/contact.js` (Showroom address, timings, phones, WhatsApp message)
-  - `src/data/relationships.js` (Bi-directional relationship queries: product <-> service <-> project)
-- [x] Implemented Motion & Smooth Scroll architecture:
-  - Fixed scrolling conflicts by removing conflicting native `scroll-smooth` on HTML and CSS.
-  - Linked Lenis smooth scrolling directly into `gsap.ticker` (`gsap.ticker.add(...)` with `lagSmoothing(0)`), eliminating frame drops and jitter.
-  - Integrated `ScrollTrigger.update()` on every Lenis scroll event.
-  - Added safe `scrollToTarget` utility with duration & easing support for buttons (e.g. `BackToTop`).
-  - Added route change synchronization in `App.jsx` with `lenis.scrollTo(0, { immediate: true })` and `ScrollTrigger.refresh()`.
-  - Implemented GSAP entrance & ScrollTrigger animations across `Home`, `Products`, `Services`, `Projects`, `About`, and `Contact` pages.
-  - Created `useGsap` and `useScrollAnimation` hooks using React 18 `gsap.context()` with complete automatic cleanup and `prefers-reduced-motion` safety.
-- [x] Implemented core UI components:
-  - `Button.jsx` (Accessible, state-aware: hover/active/focus-visible/disabled/loading, polymorphic Link/Anchor)
-  - `Badge.jsx` (Architectural tags)
-  - `SectionHeading.jsx` (Editorial index, tags, and Hinglish subtitles)
-  - `BackToTop.jsx` (Accessible scroll-to-top trigger)
-  - `ProductCard.jsx`, `ProductCategoryCard.jsx`, `ServiceCard.jsx`, `ProjectCard.jsx`
-  - `EnquiryForm.jsx` (Accessible form controls with status management)
-- [x] Implemented Layout foundation:
-  - `Navbar.jsx` (Utility top bar, main navigation, mobile drawer with ARIA attributes)
-  - `Footer.jsx` (High-contrast dark monochrome architecture with Hinglish callout & links)
-  - `PageContainer.jsx` (WCAG 2.2 AA skip-to-content target)
-- [x] Configured React Router DOM v6 with all core routes:
-  - `/` (Home foundation shell)
-  - `/products` (Products listing with category filters)
-  - `/products/:slug` (Product detail with dynamic relationships & enquiry anchor)
-  - `/services` (Services listing)
-  - `/services/:slug` (Service detail with workflow & relations)
-  - `/projects` (Projects portfolio listing)
-  - `/projects/:slug` (Project detail with specifications & relations)
-  - `/about` (About / Heritage)
-  - `/contact` (Contact & Showroom location)
-  - `*` (404 Not Found)
-- [x] Created root documentation: `progress.md` and `design.md`.
+- [x] **Homepage shell implemented**:
+  - Full narrative structure connecting Hero -> Stats -> Products -> Categories -> Services -> Projects -> Why Ambika -> Process -> CTA -> Location -> Footer.
+- [x] **Hero implemented**:
+  - Full-width image-led editorial composition with subtle dark overlay, mono eyebrow, high-contrast heading (*“Aapke space ke liye sahi product aur practical solution.”*), supporting copy, and dual CTAs (*“Products Dekhein →”*, *“Services Explore Karein →”*).
+- [x] **Stats implemented**:
+  - High-contrast darkSoft section using verified client statistics: `90+` Years of Experience, `180+` Projects Completed, `12` Design Specialists.
+- [x] **Featured Products implemented**:
+  - Priority 01 business showcase with asymmetric layout (large primary featured product + secondary product row), price on enquiry handling, and detail page links.
+- [x] **Product Categories implemented**:
+  - Broad catalog browsing covering Aluminium Works, Sliding Partitions, Sanitaryware, Kitchen Solutions, Wardrobes, and False Ceiling.
+- [x] **Services implemented**:
+  - Priority 02 dark contrast section highlighting precision fabrication, site measurement, and scope of work workflows.
+- [x] **Featured Projects implemented**:
+  - Visual proof showcasing balcony aluminium jali window projects, contemporary residences, corporate workspaces, and penthouse fitouts.
+- [x] **Why Ambika Traders implemented**:
+  - Split editorial layout with heritage statement and 3 core pillars (Heavy-Duty Material Standard, Experienced In-House Craftsmen, End-to-End Multi Solution).
+- [x] **Process implemented**:
+  - 4-step transparent execution workflow (`01 Zaroorat Samajhna`, `02 Sahi Product / Solution`, `03 Saaf-Suthra Kaam`, `04 Samadhan Poora Karna`) with horizontal desktop progression and mobile stack.
+- [x] **Conversion CTA implemented**:
+  - Full-width dark closing editorial statement with direct enquiry, direct phone line, and WhatsApp links.
+- [x] **Location implemented**:
+  - Showroom address, timings, contact channels, and Google Maps direction anchor card.
+- [x] **Footer integrated**:
+  - Reusable dark architectural footer with 4 categorized columns and Hinglish brand callout.
+- [x] **Homepage GSAP animations implemented**:
+  - Coordinated ScrollTrigger reveals for every section with `gsap.context()` cleanup and `prefers-reduced-motion` safety.
+- [x] **Project-Wide Issues Resolution Completed**:
+  - Registered `boxShadow` tokens (`subtle`, `card`, `floating`) and `spacing.13` in `tailwind.config.js`.
+  - Fixed GSAP easing `GSAP_EASING.editorial` to valid `'power3.out'`.
+  - Added `variant="outline"` to `Button.jsx` and improved disabled link behavior.
+  - Added `borderless` prop to `Image.jsx` eliminating unwanted border artifacts on Hero background.
+  - Generated full set of 26+ architectural SVG placeholder assets in `public/images/`.
+  - Cleaned up legacy heading scale tokens across `About.jsx` and `Contact.jsx`.
+  - Fixed mobile drawer positioning and focus/accessibility in `Navbar.jsx`.
+  - Fixed duplicate numbering across SectionHeading instances.
+  - Verified with 0 errors and 0 warnings on `npm run build`.
 
 ---
 
 ## In Progress
-- None (Stage 01 complete; awaiting user instructions for Stage 02).
+- Ready for next stage.
 
 ---
 
 ## Pending
-- [ ] Stage 02 Homepage sections implementation & fine-tuning.
-- [ ] Final product catalog UI enhancements and search.
-- [ ] Client image asset ingestion (replacing placeholders with high-res client photographs).
-- [ ] Advanced GSAP scroll animations & hero reveal transitions.
-- [ ] Production SEO audit and build validation.
+- [ ] Product detail page
+- [ ] Services detail pages
+- [ ] Project detail pages
+- [ ] About page
+- [ ] Contact page
+- [ ] Further motion polish
+- [ ] SEO/performance QA if unfinished
+- [ ] Final client image binary asset ingestion
 
 ---
 
 ## Pages
-- [x] Home (Foundation shell ready)
-- [x] Products (Catalog listing shell ready)
-- [x] Product Detail (Dynamic route shell ready)
-- [x] Services (Services listing shell ready)
-- [x] Service Detail (Dynamic route shell ready)
-- [x] Projects (Portfolio listing shell ready)
-- [x] Project Detail (Dynamic route shell ready)
-- [x] About (Heritage shell ready)
-- [x] Contact (Showroom & enquiry shell ready)
+- [x] Home (Stage 03 Complete Homepage with all 10 sections)
+- [x] Products (Catalog shell)
+- [x] Product Detail (Detail shell)
+- [x] Services (Overview shell)
+- [x] Service Detail (Detail shell)
+- [x] Projects (Portfolio shell)
+- [x] Project Detail (Case study shell)
+- [x] About (Heritage shell)
+- [x] Contact (Lead generation shell)
+- [x] NotFound (404 shell)
 
 ---
 
 ## Components
-- [x] `Navbar` (Utility bar, desktop links, mobile drawer)
-- [x] `Footer` (Dark monochrome editorial layout)
-- [x] `PageContainer` (Semantic layout shell + skip-link)
-- [x] `Button` (Accessible polymorphic button with loading states)
-- [x] `SectionHeading` (Editorial index & Hinglish subtitles)
-- [x] `Badge` (Minimal tags)
-- [x] `ProductCard` (Sharp architectural product card)
-- [x] `ProductCategoryCard` (Category navigation card)
-- [x] `ServiceCard` (Service scope & details card)
-- [x] `ProjectCard` (Project case study card)
-- [x] `EnquiryForm` (Accessible interactive form shell)
-- [x] `BackToTop` (Floating accessible utility)
+- [x] `Hero` (`src/components/sections/Hero.jsx`)
+- [x] `Stats` (`src/components/sections/Stats.jsx`)
+- [x] `ProductsPreview` (`src/components/sections/ProductsPreview.jsx`)
+- [x] `ProductCategories` (`src/components/sections/ProductCategories.jsx`)
+- [x] `ServicesPreview` (`src/components/sections/ServicesPreview.jsx`)
+- [x] `ProjectsPreview` (`src/components/sections/ProjectsPreview.jsx`)
+- [x] `WhyAmbika` (`src/components/sections/WhyAmbika.jsx`)
+- [x] `Process` (`src/components/sections/Process.jsx`)
+- [x] `CTASection` (`src/components/sections/CTASection.jsx`)
+- [x] `Location` (`src/components/sections/Location.jsx`)
+- [x] `Navbar`, `Footer`, `PageContainer`
+- [x] `Button`, `Section`, `SectionHeading`, `Image`, `Link`, `Card`, `Badge`
+- [x] `ProductCard`, `ProductCategoryCard`, `ServiceCard`, `ProjectCard`
+- [x] `Input`, `Select`, `Textarea`, `EnquiryForm`
 
 ---
 
-## Content
-- [x] Strictly client-supplied domains mapped: Aluminium doors/windows, sliding partitions, sanitaryware, modular kitchens, wardrobes, false ceilings, renovation, construction, fabrication.
-- [x] No fabricated prices (using quote model), no fake warranties, no fake client testimonials.
-- [x] 100% Hinglish written in Roman/English alphabet. Zero Devanagari script.
-
----
-
-## Design System
-- [x] Black + White + Neutral Monochrome established.
-- [x] INTERN typography tokens and `@font-face` configured.
-- [x] Sharp / lightly rounded corners (no excessive pill rounding on cards).
-- [x] Controlled spacing scale and container constraints (`1440px`).
-
----
-
-## Animations
-- [x] GSAP 3 + ScrollTrigger architecture setup.
-- [x] Lenis smooth scrolling integration.
-- [x] `prefers-reduced-motion` safety guards implemented.
-
----
-
-## Responsive
-- [x] Mobile (stacked layout, responsive hamburger drawer, reduced heading clamp).
-- [x] Tablet & Desktop grids configured.
-
----
-
-## SEO
-- [x] Semantic HTML5 structure throughout.
-- [x] Meta description, OpenGraph tags, title tags in `index.html`.
-- [x] Clean, semantic URLs for all routes.
-
----
-
-## Performance
-- [x] Lightweight Vite setup with zero runtime CSS-in-JS overhead.
-- [x] Font display swap and lazy loading ready.
-
----
-
-## Bugs / Issues
-- None identified in Stage 01.
-
----
-
-## Decisions
-1. **Color Palette**: Dedicated monochrome system (`mono-950` to `mono-0`) with semantic CSS variable mapping.
-2. **Typography**: Hard requirement `INTERN` font set as default across all headings, body, and UI elements.
-3. **Copywriting**: Natural conversational Hinglish in Latin script throughout.
-4. **Data Isolation**: All business copy isolated in `src/data/` modules with dynamic relationship query helpers.
+## Content & Copywriting
+- [x] 100% Hinglish written in Roman / English alphabet. Zero Devanagari script.
+- [x] All content strictly grounded in client domains (Aluminium doors/windows, sliding partitions, sanitaryware, modular kitchens, wardrobes, false ceilings, fabrication).
+- [x] Zero fake pricing, fake warranties, or invented statistics.
 
 ---
 
 ## Last Updated
-2026-08-17 — Stage 01 Foundation Architecture Setup Completed.
+2026-08-17 — Stage 03 Complete Homepage Implementation Finished and Verified.

@@ -5,43 +5,9 @@
 @tailwind utilities;
 
 /* ==========================================================================
-   Font Setup — INTERN Primary Font Face
+   Typography Base — Google Fonts Inter + System Fallback
    ========================================================================== */
-@font-face {
-  font-family: 'INTERN';
-  src: url('../assets/fonts/INTERN-Regular.woff2') format('woff2'),
-       url('../assets/fonts/INTERN-Regular.woff') format('woff');
-  font-weight: 400;
-  font-style: normal;
-  font-display: swap;
-}
 
-@font-face {
-  font-family: 'INTERN';
-  src: url('../assets/fonts/INTERN-Medium.woff2') format('woff2'),
-       url('../assets/fonts/INTERN-Medium.woff') format('woff');
-  font-weight: 500;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'INTERN';
-  src: url('../assets/fonts/INTERN-SemiBold.woff2') format('woff2'),
-       url('../assets/fonts/INTERN-SemiBold.woff') format('woff');
-  font-weight: 600;
-  font-style: normal;
-  font-display: swap;
-}
-
-@font-face {
-  font-family: 'INTERN';
-  src: url('../assets/fonts/INTERN-Bold.woff2') format('woff2'),
-       url('../assets/fonts/INTERN-Bold.woff') format('woff');
-  font-weight: 700;
-  font-style: normal;
-  font-display: swap;
-}
 
 /* ==========================================================================
    Base Layer & Resets
@@ -60,11 +26,19 @@
     min-height: 100vh;
     overflow-x: hidden;
     line-height: 1.6;
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
   }
 
   /* Accessible Focus Ring (WCAG 2.2 AA) */
   :focus-visible {
     outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* High contrast dark section focus-visible */
+  .theme-dark :focus-visible {
+    outline: 2px solid var(--color-focus-ring-inverse);
     outline-offset: 2px;
   }
 
@@ -79,6 +53,12 @@
     font-family: var(--font-intern);
     font-weight: 600;
     color: inherit;
+    letter-spacing: -0.02em;
+  }
+
+  p {
+    font-family: var(--font-intern);
+    color: var(--color-text-secondary);
   }
 }
 
@@ -86,6 +66,25 @@
    Editorial Utility Components & Tokens
    ========================================================================== */
 @layer components {
+  /* Containers */
+  .page-container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--page-gutter);
+    padding-right: var(--page-gutter);
+  }
+
+  .page-container-narrow {
+    width: 100%;
+    max-width: var(--container-narrow-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--page-gutter);
+    padding-right: var(--page-gutter);
+  }
+
   .content-container {
     width: 100%;
     max-width: var(--container-max-width);
@@ -95,45 +94,157 @@
     padding-right: var(--page-gutter);
   }
 
-  .content-container-narrow {
-    width: 100%;
-    max-width: var(--container-narrow-width);
-    margin-left: auto;
-    margin-right: auto;
-    padding-left: var(--page-gutter);
-    padding-right: var(--page-gutter);
+  /* Editorial 12-column layout grid */
+  .grid-12 {
+    display: grid;
+    grid-template-columns: repeat(12, minmax(0, 1fr));
+    gap: 1.5rem;
   }
 
-  .section-padding-y {
-    padding-top: var(--section-space-y-md);
-    padding-bottom: var(--section-space-y-md);
+  @media (min-width: 1024px) {
+    .grid-12 {
+      gap: 2rem;
+    }
   }
 
-  .section-padding-y-lg {
-    padding-top: var(--section-space-y-lg);
-    padding-bottom: var(--section-space-y-lg);
+  /* Section Spacing Classes */
+  .section-pad-xs {
+    padding-top: var(--section-xs);
+    padding-bottom: var(--section-xs);
   }
 
-  .section-padding-y-sm {
-    padding-top: var(--section-space-y-sm);
-    padding-bottom: var(--section-space-y-sm);
+  .section-pad-sm {
+    padding-top: var(--section-sm);
+    padding-bottom: var(--section-sm);
   }
 
-  /* Thin architectural border */
-  .editorial-border-b {
+  .section-pad-md {
+    padding-top: var(--section-md);
+    padding-bottom: var(--section-md);
+  }
+
+  .section-pad-lg {
+    padding-top: var(--section-lg);
+    padding-bottom: var(--section-lg);
+  }
+
+  .section-pad-xl {
+    padding-top: var(--section-xl);
+    padding-bottom: var(--section-xl);
+  }
+
+  /* Section Alternating Background Themes */
+  .section-theme-light {
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
     border-bottom: 1px solid var(--color-border);
   }
 
-  .editorial-border-t {
-    border-top: 1px solid var(--color-border);
+  .section-theme-secondary {
+    background-color: var(--color-bg-secondary);
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-border);
   }
 
-  .editorial-border-dark-b {
+  .section-theme-muted {
+    background-color: var(--color-bg-muted);
+    color: var(--color-text-primary);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .section-theme-dark {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-inverse);
     border-bottom: 1px solid var(--color-border-dark);
   }
 
-  .editorial-border-dark-t {
-    border-top: 1px solid var(--color-border-dark);
+  .section-theme-dark-soft {
+    background-color: var(--color-bg-dark-soft);
+    color: var(--color-text-inverse);
+    border-bottom: 1px solid var(--color-border-dark);
+  }
+
+  /* Editorial Paragraph Width Control (55-75 chars per line) */
+  .prose-editorial {
+    max-width: 65ch;
+    line-height: 1.65;
+  }
+
+  /* Thin architectural borders */
+  .border-divider {
+    border-color: var(--color-border);
+  }
+
+  .border-divider-dark {
+    border-color: var(--color-border-dark);
+  }
+
+  /* Image Aspect Ratio Presets */
+  .aspect-hero {
+    aspect-ratio: 21 / 9;
+  }
+
+  .aspect-product {
+    aspect-ratio: 4 / 5;
+  }
+
+  .aspect-product-square {
+    aspect-ratio: 1 / 1;
+  }
+
+  .aspect-service {
+    aspect-ratio: 4 / 3;
+  }
+
+  .aspect-project {
+    aspect-ratio: 16 / 10;
+  }
+
+  /* Overlay Utilities */
+  .overlay-dark-subtle {
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.2) 0%, rgba(10, 10, 10, 0.65) 100%);
+  }
+
+  .overlay-dark-strong {
+    background: linear-gradient(180deg, rgba(10, 10, 10, 0.5) 0%, rgba(10, 10, 10, 0.9) 100%);
+  }
+
+  .overlay-light {
+    background: rgba(255, 255, 255, 0.7);
+  }
+}
+
+/* ==========================================================================
+   Subtle Scrollbar Styling (Minimal & Refined)
+   ========================================================================== */
+::-webkit-scrollbar {
+  width: 6px;
+  height: 6px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--color-bg-primary);
+}
+
+::-webkit-scrollbar-thumb {
+  background: #c5c5c5;
+  border-radius: 3px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #888888;
+}
+
+/* ==========================================================================
+   Utilities Layer
+   ========================================================================== */
+@layer utilities {
+  .scrollbar-none {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
   }
 }
 
@@ -147,6 +258,6 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 }
+

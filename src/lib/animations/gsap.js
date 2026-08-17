@@ -20,7 +20,7 @@ export const prefersReducedMotion = () => {
 export const GSAP_EASING = {
   luxury: 'power3.out',
   smooth: 'power2.out',
-  editorial: 'cubic-bezier(0.16, 1, 0.3, 1)',
+  editorial: 'power3.out',
   expo: 'expo.out',
 };
 

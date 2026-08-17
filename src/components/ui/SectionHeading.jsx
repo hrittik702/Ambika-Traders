@@ -3,20 +3,24 @@ import { cn } from '@/lib/utils';
 import Badge from './Badge';
 
 /**
- * Ambika Traders — Editorial Section Heading Component
- * High-contrast architectural layout with numbered indexes and Hinglish subtitles.
- * Equipped with data-attributes for GSAP ScrollTrigger targeting.
+ * Ambika Traders — Global Section Heading Component (Stage 02)
+ * High-contrast architectural layout with numbered indexes, eyebrow badges, and Hinglish descriptions.
  */
 export function SectionHeading({
   index,
   tag,
+  eyebrow,
   title,
   subtitle,
-  align = 'left',
-  theme = 'light',
+  description,
+  action,
+  align = 'left', // 'left' | 'center' | 'split'
+  theme = 'light', // 'light' | 'dark'
   className,
 }) {
   const isDark = theme === 'dark';
+  const labelText = eyebrow || tag;
+  const bodyText = description || subtitle;
 
   return (
     <div
@@ -29,26 +33,30 @@ export function SectionHeading({
       )}
     >
       <div className={cn(align === 'split' ? 'max-w-2xl' : 'w-full')}>
-        <div data-heading-tag className="flex items-center gap-3 mb-3">
-          {index && (
-            <span className={cn(
-              'font-mono text-xs tracking-widest uppercase font-semibold',
-              isDark ? 'text-mono-400' : 'text-mono-500'
-            )}>
-              [{index}]
-            </span>
-          )}
-          {tag && (
-            <Badge variant={isDark ? 'outlineDark' : 'outline'}>
-              {tag}
-            </Badge>
-          )}
-        </div>
+        {/* Eyebrow & Index */}
+        {(index || labelText) && (
+          <div data-heading-tag className="flex items-center gap-3 mb-3">
+            {index && (
+              <span className={cn(
+                'font-mono text-eyebrow font-semibold uppercase tracking-widest',
+                isDark ? 'text-mono-400' : 'text-mono-500'
+              )}>
+                [{index}]
+              </span>
+            )}
+            {labelText && (
+              <Badge variant={isDark ? 'outlineDark' : 'outline'}>
+                {labelText}
+              </Badge>
+            )}
+          </div>
+        )}
 
+        {/* Section Main Title */}
         <h2
           data-heading-title
           className={cn(
-            'text-heading-1 md:text-display-lg font-semibold tracking-tight',
+            'text-heading-xl md:text-display-lg font-bold tracking-tight',
             isDark ? 'text-mono-0' : 'text-mono-950'
           )}
         >
@@ -56,18 +64,28 @@ export function SectionHeading({
         </h2>
       </div>
 
-      {subtitle && (
-        <p
-          data-heading-subtitle
-          className={cn(
-            'text-body md:text-body-lg font-normal leading-relaxed',
-            align === 'split' ? 'max-w-md' : 'mt-4 max-w-2xl',
-            isDark ? 'text-mono-300' : 'text-mono-600'
-          )}
-        >
-          {subtitle}
-        </p>
-      )}
+      {/* Description and optional right action */}
+      <div className={cn(
+        align === 'split' ? 'max-w-md flex flex-col items-start md:items-end gap-4' : 'mt-4 max-w-2xl'
+      )}>
+        {bodyText && (
+          <p
+            data-heading-subtitle
+            className={cn(
+              'text-body md:text-body-lg font-normal leading-relaxed prose-editorial',
+              isDark ? 'text-mono-300' : 'text-mono-600'
+            )}
+          >
+            {bodyText}
+          </p>
+        )}
+
+        {action && (
+          <div className="mt-2">
+            {action}
+          </div>
+        )}
+      </div>
     </div>
   );
 }

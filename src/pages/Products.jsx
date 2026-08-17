@@ -16,6 +16,7 @@ import { GSAP_EASING } from '@/lib/animations/gsap';
 export function Products() {
   const [searchParams, setSearchParams] = useSearchParams();
   const selectedCategory = searchParams.get('category') || 'all';
+  const containerRef = useRef(null);
   const gridRef = useRef(null);
 
   const filteredProducts = selectedCategory === 'all'
@@ -27,7 +28,7 @@ export function Products() {
 
   useGsap((gsap) => {
     // Animate section heading
-    const heading = document.querySelector('[data-heading-container]');
+    const heading = containerRef.current?.querySelector('[data-heading-container]');
     if (heading) {
       gsap.fromTo(
         heading,
@@ -45,11 +46,11 @@ export function Products() {
         { opacity: 1, y: 0, duration: 0.7, stagger: 0.08, ease: GSAP_EASING.editorial }
       );
     }
-  }, [selectedCategory], gridRef);
+  }, [selectedCategory], containerRef);
 
   return (
     <PageContainer>
-      <div className="content-container">
+      <div ref={containerRef} className="content-container">
         {/* Page Header */}
         <SectionHeading
           index="CATALOG"
@@ -103,7 +104,7 @@ export function Products() {
           <div className="p-12 text-center bg-mono-50 border border-mono-200 rounded-xs">
             <p className="text-mono-600">Is category mein abhi products available nahi hain.</p>
             <Button
-              variant="outline"
+              variant="secondary"
               size="sm"
               className="mt-4"
               onClick={() => setSearchParams({})}

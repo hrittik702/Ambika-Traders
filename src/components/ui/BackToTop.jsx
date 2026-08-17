@@ -32,7 +32,7 @@ export function BackToTop() {
       onClick={handleScrollToTop}
       aria-label="Scroll to top of page"
       className={cn(
-        'fixed bottom-6 right-6 z-40 p-3 rounded-xs bg-mono-950 text-mono-0 border border-mono-800 shadow-floating transition-all duration-300 focus-visible:ring-2 focus-visible:ring-mono-950 focus-visible:outline-none hover:bg-mono-800',
+        'fixed bottom-6 right-6 z-sticky p-3 rounded-xs bg-mono-950 text-mono-0 border border-mono-800 shadow-floating transition-all duration-300 focus-visible:ring-2 focus-visible:ring-mono-950 focus-visible:outline-none hover:bg-mono-800',
         isVisible ? 'opacity-100 translate-y-0 pointer-events-auto' : 'opacity-0 translate-y-4 pointer-events-none'
       )}
     >

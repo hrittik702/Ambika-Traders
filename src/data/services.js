@@ -29,6 +29,7 @@ export const services = [
     hinglishHeadline: 'Modern spaces ko smartly divide karne ke liye customized glass partition works.',
     shortDescription: 'Offices, conference rooms aur open-plan living areas ke liye noise-reducing glass partitions.',
     description: 'Slim aluminium profile framing ke saath acoustic toughened glass partitions ka seamless installation. Minimal hardware exposure ke saath sleek, floating visual effect milta hai.',
+    image: '/images/services/sliding-partitions.jpg',
     scopeOfWork: [
       'Space planning aur floor-to-ceiling alignment',
       'Acoustic seal integration for noise isolation',
@@ -46,6 +47,7 @@ export const services = [
     hinglishHeadline: 'Wardrobes, modular kitchens aur living spaces ka complete structural execution.',
     shortDescription: 'Architects aur homeowners ke design vision ko reality mein convert karne ke liye turn-key interior craftsmanship.',
     description: 'Hum wardrobe profile systems, modular kitchen installations aur customized storage units ka end-to-end execution handle karte hain. Har joint aur alignment par special attention rehta hai.',
+    image: '/images/services/interior-execution.jpg',
     scopeOfWork: [
       'Carcass assembly aur alignment',
       'Glass profile shutters aur hydraulic lift fittings',
@@ -63,6 +65,7 @@ export const services = [
     hinglishHeadline: 'Gypsum channels aur aluminium grids ke saath modern false ceiling installation.',
     shortDescription: 'Cove lighting, ambient glow aur clean electrical routing ke liye false ceiling solutions.',
     description: 'Level alignment aur anti-sagging steel suspension ke saath durable false ceiling frameworks taiyaar kiye jaate hain. Har room ke dimensions ke mutabiq custom drop-levels aur light cutouts banaye jaate hain.',
+    image: '/images/services/false-ceiling.jpg',
     scopeOfWork: [
       'Laser level alignment aur perimeter framing',
       'Heavy gauge GI channel grid installation',
@@ -80,6 +83,7 @@ export const services = [
     hinglishHeadline: 'Purane spaces ko modern aluminium aur interior solutions ke saath upgrade karein.',
     shortDescription: 'Old windows, damaged partitions aur outdated interiors ka clean structural replacement.',
     description: 'Existing structure ko bina damage kiye modern energy-efficient aluminium windows, fresh partition systems aur modern sanitary upgrades implement karne ka complete solution.',
+    image: '/images/services/renovation.jpg',
     scopeOfWork: [
       'Old fixtures ka safe dismantling aur removal',
       'Wall edges aur sub-frame repairing',
@@ -97,6 +101,7 @@ export const services = [
     hinglishHeadline: 'Sahi material, profile thickness aur hardware selection ke liye expert guidance.',
     shortDescription: 'Wind-load, glass thickness aur profile specifications ke regarding technical assistance.',
     description: 'Har site ki requirement alag hoti hai — floor height, wind exposure aur usage frequency ke hisaab se sahi aluminium section aur glass combination suggest kiya jaata hai taaki project durable bane.',
+    image: '/images/services/architectural-consulting.jpg',
     scopeOfWork: [
       'Structural drawings review',
       'Section thickness aur glass specification advisory',

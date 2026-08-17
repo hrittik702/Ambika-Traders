@@ -4,7 +4,8 @@ import Footer from './Footer';
 import { cn } from '@/lib/utils';
 
 /**
- * Ambika Traders — Standard Accessible Page Container Shell
+ * Ambika Traders — Global Page Container Shell (Stage 02)
+ * Handles global width boundaries, fluid responsive horizontal gutters, and WCAG AA skip target.
  */
 export function PageContainer({
   children,
@@ -12,17 +13,19 @@ export function PageContainer({
   showNavbar = true,
   showFooter = true,
   noPadding = false,
+  narrow = false,
 }) {
   return (
-    <div className="flex flex-col min-h-screen bg-bg-primary text-text-primary">
+    <div className="flex flex-col min-h-screen bg-bg-primary text-text-primary overflow-x-clip">
       {showNavbar && <Navbar />}
       
       <main
         id="main-content"
         tabIndex="-1"
         className={cn(
-          'flex-1 focus:outline-none',
-          !noPadding && 'py-8 md:py-14',
+          'flex-1 focus:outline-none w-full',
+          !noPadding && 'section-pad-sm md:section-pad-md',
+          narrow && 'max-w-narrow mx-auto w-full px-4 md:px-8',
           className
         )}
       >
