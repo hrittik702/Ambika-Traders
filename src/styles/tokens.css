@@ -1,0 +1,115 @@
+/**
+ * Ambika Traders — Design System Tokens
+ * Single source of truth for CSS variables and styling constants.
+ * High-contrast editorial monochrome aesthetic (Black + White + Neutral Grays).
+ */
+
+:root {
+  /* ==========================================================================
+     Color Tokens — Monochrome Foundation
+     ========================================================================== */
+  --color-bg-primary: #ffffff;
+  --color-bg-secondary: #f7f7f7;
+  --color-bg-surface: #fbfbfb;
+  --color-bg-dark: #0a0a0a;
+  --color-bg-dark-secondary: #141414;
+  --color-bg-elevated: #1e1e1e;
+  
+  --color-text-primary: #0a0a0a;
+  --color-text-secondary: #404040;
+  --color-text-muted: #737373;
+  --color-text-subtle: #8a8a8a;
+  --color-text-inverse: #ffffff;
+  --color-text-inverse-secondary: #d4d4d4;
+  --color-text-inverse-muted: #a3a3a3;
+
+  --color-border: #e5e5e5;
+  --color-border-subtle: #f0f0f0;
+  --color-border-strong: #171717;
+  --color-border-dark: #262626;
+  --color-border-dark-subtle: #1c1c1c;
+
+  /* Accent is extremely restrained; defaults to pure contrast monochrome */
+  --color-accent: #0a0a0a;
+  --color-accent-hover: #262626;
+  --color-accent-subtle: #f4f4f4;
+
+  /* Focus outline for WCAG 2.2 AA */
+  --color-focus-ring: #0a0a0a;
+  --color-focus-ring-inverse: #ffffff;
+
+  /* ==========================================================================
+     Typography Tokens — INTERN Font System
+     ========================================================================== */
+  --font-intern: 'INTERN', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  
+  /* Font weights */
+  --font-weight-regular: 400;
+  --font-weight-medium: 500;
+  --font-weight-semibold: 600;
+  --font-weight-bold: 700;
+
+  /* Letter Spacing */
+  --tracking-tighter: -0.035em;
+  --tracking-tight: -0.02em;
+  --tracking-normal: 0em;
+  --tracking-wide: 0.04em;
+  --tracking-wider: 0.08em;
+  --tracking-widest: 0.12em;
+
+  /* ==========================================================================
+     Spacing Tokens — Editorial Rhythm
+     ========================================================================== */
+  --space-0: 0px;
+  --space-1: 0.25rem;  /* 4px */
+  --space-2: 0.5rem;   /* 8px */
+  --space-3: 0.75rem;  /* 12px */
+  --space-4: 1rem;     /* 16px */
+  --space-5: 1.25rem;  /* 20px */
+  --space-6: 1.5rem;   /* 24px */
+  --space-8: 2rem;     /* 32px */
+  --space-10: 2.5rem;  /* 40px */
+  --space-12: 3rem;    /* 48px */
+  --space-16: 4rem;    /* 64px */
+  --space-20: 5rem;    /* 80px */
+  --space-24: 6rem;    /* 96px */
+  --space-32: 8rem;    /* 128px */
+  --space-40: 10rem;   /* 160px */
+
+  /* Section Spacing */
+  --section-space-y-sm: clamp(3.5rem, 6vw, 5rem);
+  --section-space-y-md: clamp(5rem, 9vw, 7.5rem);
+  --section-space-y-lg: clamp(6.5rem, 12vw, 10rem);
+  --page-gutter: clamp(1rem, 4vw, 3.5rem);
+
+  /* ==========================================================================
+     Radius & Shadow Tokens — Sharp, Architectural & Refined
+     ========================================================================== */
+  --radius-none: 0px;
+  --radius-xs: 2px;
+  --radius-sm: 4px;
+  --radius-md: 6px;
+  --radius-lg: 8px;
+
+  --shadow-subtle: 0 1px 2px 0 rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 4px 12px 0 rgba(0, 0, 0, 0.05);
+  --shadow-floating: 0 12px 32px -4px rgba(0, 0, 0, 0.08);
+
+  /* ==========================================================================
+     Motion & Transition Tokens
+     ========================================================================== */
+  --ease-luxury: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-standard: cubic-bezier(0.4, 0, 0.2, 1);
+  --duration-fast: 150ms;
+  --duration-normal: 300ms;
+  --duration-slow: 500ms;
+  --duration-luxury: 700ms;
+
+  /* ==========================================================================
+     Layout & Container Widths
+     ========================================================================== */
+  --container-max-width: 1440px;
+  --container-narrow-width: 1120px;
+  --header-height: 76px;
+  --utility-bar-height: 38px;
+}

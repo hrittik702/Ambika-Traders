@@ -1,0 +1,152 @@
+@import './tokens.css';
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* ==========================================================================
+   Font Setup — INTERN Primary Font Face
+   ========================================================================== */
+@font-face {
+  font-family: 'INTERN';
+  src: url('../assets/fonts/INTERN-Regular.woff2') format('woff2'),
+       url('../assets/fonts/INTERN-Regular.woff') format('woff');
+  font-weight: 400;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'INTERN';
+  src: url('../assets/fonts/INTERN-Medium.woff2') format('woff2'),
+       url('../assets/fonts/INTERN-Medium.woff') format('woff');
+  font-weight: 500;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'INTERN';
+  src: url('../assets/fonts/INTERN-SemiBold.woff2') format('woff2'),
+       url('../assets/fonts/INTERN-SemiBold.woff') format('woff');
+  font-weight: 600;
+  font-style: normal;
+  font-display: swap;
+}
+
+@font-face {
+  font-family: 'INTERN';
+  src: url('../assets/fonts/INTERN-Bold.woff2') format('woff2'),
+       url('../assets/fonts/INTERN-Bold.woff') format('woff');
+  font-weight: 700;
+  font-style: normal;
+  font-display: swap;
+}
+
+/* ==========================================================================
+   Base Layer & Resets
+   ========================================================================== */
+@layer base {
+  html {
+    font-family: var(--font-intern);
+    background-color: var(--color-bg-primary);
+    color: var(--color-text-primary);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    min-height: 100vh;
+    overflow-x: hidden;
+    line-height: 1.6;
+  }
+
+  /* Accessible Focus Ring (WCAG 2.2 AA) */
+  :focus-visible {
+    outline: 2px solid var(--color-focus-ring);
+    outline-offset: 2px;
+  }
+
+  /* Selection highlight */
+  ::selection {
+    background-color: var(--color-bg-dark);
+    color: var(--color-text-inverse);
+  }
+
+  /* Headings typography reset */
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-intern);
+    font-weight: 600;
+    color: inherit;
+  }
+}
+
+/* ==========================================================================
+   Editorial Utility Components & Tokens
+   ========================================================================== */
+@layer components {
+  .content-container {
+    width: 100%;
+    max-width: var(--container-max-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--page-gutter);
+    padding-right: var(--page-gutter);
+  }
+
+  .content-container-narrow {
+    width: 100%;
+    max-width: var(--container-narrow-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: var(--page-gutter);
+    padding-right: var(--page-gutter);
+  }
+
+  .section-padding-y {
+    padding-top: var(--section-space-y-md);
+    padding-bottom: var(--section-space-y-md);
+  }
+
+  .section-padding-y-lg {
+    padding-top: var(--section-space-y-lg);
+    padding-bottom: var(--section-space-y-lg);
+  }
+
+  .section-padding-y-sm {
+    padding-top: var(--section-space-y-sm);
+    padding-bottom: var(--section-space-y-sm);
+  }
+
+  /* Thin architectural border */
+  .editorial-border-b {
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .editorial-border-t {
+    border-top: 1px solid var(--color-border);
+  }
+
+  .editorial-border-dark-b {
+    border-bottom: 1px solid var(--color-border-dark);
+  }
+
+  .editorial-border-dark-t {
+    border-top: 1px solid var(--color-border-dark);
+  }
+}
+
+/* ==========================================================================
+   Accessibility & Reduced Motion
+   ========================================================================== */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
